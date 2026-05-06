@@ -66,19 +66,19 @@ The target variable, `FutureSpending`, is a continuous numerical value (represen
 Here are the key insights and visualizations from the data:
 
 ### Distribution of Future Spending
-Most customers exhibit future spending in the lower-to-middle range, with a long tail representing a few high-value customers. 
+**Interpretation:** Most customers are in the lower spending bracket, with a few high-value outliers. The X-axis represents the `Future Spending ($)` and the Y-axis represents the `Count of Customers`.
 ![Future Spending Distribution](images/future_spending_distribution.png)
 
 ### Relationship Between Income and Spending
-There is a positive trend indicating that customers with higher annual income tend to have higher future spending, though there are variations across different income brackets.
+**Interpretation:** Higher annual income generally shows a positive trend towards higher future spending, confirming income is a valid indicator of potential value. The X-axis represents `Annual Income ($)` and the Y-axis represents `Future Spending ($)`.
 ![Income vs Future Spending](images/income_vs_spending.png)
 
 ### Previous Spending vs. Future Spending
-`Year1Spending` is highly correlated with `FutureSpending`. Customers who spent a lot in their first year are overwhelmingly likely to continue spending at high levels.
+**Interpretation:** There is a strong positive correlation; high Year 1 spending heavily predicts high future spending. The X-axis represents `Year 1 Spending ($)` and the Y-axis represents `Future Spending ($)`.
 ![Year 1 vs Future Spending](images/year1_vs_future.png)
 
 ### Correlation Heatmap
-Strong correlations exist between `FutureSpending`, `Year1Spending`, `AverageOrderValue`, and our engineered `TotalPreviousSpending`.
+**Interpretation:** Future spending is highly correlated with Year 1 Spending and Average Order Value, meaning past transactional volume is our strongest predictor. 
 ![Correlation Heatmap](images/correlation_heatmap.png)
 
 ---
@@ -90,6 +90,7 @@ Customers were segmented into three tiers based on their `Year1Spending` quantil
 2.  **Medium-Value Customers:** Middle 50% of spenders. The core customer base with potential to grow.
 3.  **Low-Value Customers:** Bottom 25% of spenders. These customers spend the least and may require cost-effective retention strategies.
 
+**Interpretation:** Customers are segmented to easily identify the top 25% 'High-Value' targets for premium offers. The X-axis represents the `Customer Segment` and the Y-axis represents the `Number of Customers`.
 ![Customer Segments](images/customer_segments.png)
 
 ---
