@@ -89,6 +89,28 @@ plt.subplots_adjust(bottom=0.15)
 plt.savefig('images/income_vs_spending.png')
 plt.close()
 
+# Relationship between website visits and spending
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='TotalVisits', y='FutureSpending', data=df, alpha=0.6, color='purple')
+plt.title('Total Visits vs Future Spending')
+plt.xlabel('Total Visits (Web + App)')
+plt.ylabel('Future Spending ($)')
+plt.figtext(0.5, 0.01, "Interpretation: Higher engagement (visits) generally correlates with higher spending, identifying active users.", ha="center", fontsize=10, bbox={"facecolor":"lightgrey", "alpha":0.5, "pad":5})
+plt.subplots_adjust(bottom=0.15)
+plt.savefig('images/visits_vs_spending.png')
+plt.close()
+
+# Relationship between order count and future spending
+plt.figure(figsize=(8, 6))
+sns.scatterplot(x='PreviousOrders', y='FutureSpending', data=df, alpha=0.6, color='orange')
+plt.title('Previous Orders vs Future Spending')
+plt.xlabel('Number of Previous Orders')
+plt.ylabel('Future Spending ($)')
+plt.figtext(0.5, 0.01, "Interpretation: Frequent buyers (high order count) are significantly more likely to spend more in the future.", ha="center", fontsize=10, bbox={"facecolor":"lightgrey", "alpha":0.5, "pad":5})
+plt.subplots_adjust(bottom=0.15)
+plt.savefig('images/orders_vs_spending.png')
+plt.close()
+
 # Relationship between previous spending and future spending
 plt.figure(figsize=(8, 6))
 sns.scatterplot(x='Year1Spending', y='FutureSpending', data=df, alpha=0.6, color='green')
@@ -98,6 +120,16 @@ plt.ylabel('Future Spending ($)')
 plt.figtext(0.5, 0.01, "Interpretation: Strong positive correlation; high Year 1 spending heavily predicts high future spending.", ha="center", fontsize=10, bbox={"facecolor":"lightgrey", "alpha":0.5, "pad":5})
 plt.subplots_adjust(bottom=0.15)
 plt.savefig('images/year1_vs_future.png')
+plt.close()
+
+# Outliers in customer value
+plt.figure(figsize=(8, 6))
+sns.boxplot(x=df['Year1Spending'], color='cyan')
+plt.title('Outlier Analysis in Customer Value (Year 1 Spending)')
+plt.xlabel('Year 1 Spending ($)')
+plt.figtext(0.5, 0.01, "Interpretation: Significant outliers exist in the higher spending range, representing the 'whales' of the customer base.", ha="center", fontsize=10, bbox={"facecolor":"lightgrey", "alpha":0.5, "pad":5})
+plt.subplots_adjust(bottom=0.15)
+plt.savefig('images/spending_outliers.png')
 plt.close()
 
 # Correlation Heatmap

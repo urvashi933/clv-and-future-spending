@@ -80,9 +80,21 @@ Here are the key insights and visualizations from the data:
 **Interpretation:** Higher annual income generally shows a positive trend towards higher future spending, confirming income is a valid indicator of potential value. The X-axis represents `Annual Income ($)` and the Y-axis represents `Future Spending ($)`.
 ![Income vs Future Spending](images/income_vs_spending.png)
 
+### Relationship Between Website Visits and Spending
+**Interpretation:** Higher digital engagement (total visits across web and app) generally correlates with higher spending. This identifies active users as high-potential targets. The X-axis represents `Total Visits` and the Y-axis represents `Future Spending ($)`.
+![Total Visits vs Future Spending](images/visits_vs_spending.png)
+
+### Relationship Between Order Count and Future Spending
+**Interpretation:** Customers with a higher frequency of previous orders are significantly more likely to maintain high future spending. The X-axis represents `Previous Orders` and the Y-axis represents `Future Spending ($)`.
+![Previous Orders vs Future Spending](images/orders_vs_spending.png)
+
 ### Previous Spending vs. Future Spending
 **Interpretation:** There is a strong positive correlation; high Year 1 spending heavily predicts high future spending. The X-axis represents `Year 1 Spending ($)` and the Y-axis represents `Future Spending ($)`.
 ![Year 1 vs Future Spending](images/year1_vs_future.png)
+
+### Outliers in Customer Value
+**Interpretation:** Significant outliers exist in the higher spending range (the "whales"). These customers represent a disproportionate amount of revenue and require high-touch VIP management.
+![Outlier Analysis](images/spending_outliers.png)
 
 ### Correlation Heatmap
 **Interpretation:** Future spending is highly correlated with Year 1 Spending and Average Order Value, meaning past transactional volume is our strongest predictor. 
