@@ -12,14 +12,26 @@ from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
 import os
+import gdown
 
-# Create directories for outputs
+# Create directories for outputs and dataset
 os.makedirs('images', exist_ok=True)
 os.makedirs('outputs', exist_ok=True)
+os.makedirs('dataset', exist_ok=True)
+
+dataset_path = 'dataset/part_5_customer_ltv_prediction.csv'
+
+# Download dataset if not exists
+if not os.path.exists(dataset_path):
+    print("Downloading dataset...")
+    # Using the specific file ID from the provided folder
+    file_id = '1BIrMxVmcLTXwowxkQ1HqMw8U1eu6dCE7' 
+    url = f'https://drive.google.com/uc?id={file_id}'
+    gdown.download(url, dataset_path, quiet=False)
 
 # 1. Data Understanding & Loading
 print("--- Loading Dataset ---")
-df = pd.read_csv('dataset/part_5_customer_ltv_prediction.csv')
+df = pd.read_csv(dataset_path)
 print(f"Dataset shape: {df.shape}")
 
 # 2. Data Cleaning & Feature Engineering
