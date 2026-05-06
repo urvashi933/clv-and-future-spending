@@ -49,15 +49,22 @@ The target variable, `FutureSpending`, is a continuous numerical value (represen
 ## 3. Data Cleaning and Feature Engineering
 
 **Data Cleaning:**
-*   **Missing Values:** Missing values in `AnnualIncome` and `AverageOrderValue` were imputed using the median to avoid the influence of extreme outliers.
-*   **Duplicates:** The dataset was checked for duplicate records, which were subsequently removed.
-*   **Data Types:** Verified that all continuous features are floats/ints and categorical features are objects.
+*   **Missing Values:** Missing values in `AnnualIncome` and `AverageOrderValue` were imputed using the median, which is robust against skewed distributions.
+*   **Duplicates:** Verified and removed duplicate entries to ensure data integrity.
+*   **Data Type Correction:** Standardized numerical columns to floats/integers and encoded categorical variables for model compatibility.
+*   **Outlier Analysis:** Conducted outlier analysis using boxplots for `AnnualIncome` and `Year1Spending`. To minimize the distortion from these outliers, median imputation was used for missing values.
 
-**Feature Engineering:**
-*   **`TotalPreviousSpending`**: `PreviousOrders` * `AverageOrderValue`. Provides an alternative metric for historical monetary value.
-*   **`TotalVisits`**: `WebsiteVisits` + `AppSessions`. Combines web and app interactions into a single total digital engagement score.
-*   **`EngagementScore`**: `(TotalVisits * 10) / (DaysSinceLastPurchase + 1)`. A custom metric representing how frequently and recently the customer interacts with the brand. High visits and low recency days result in a higher score.
-*   **`AvgSpendingPerVisit`**: `Year1Spending / (TotalVisits + 1)`. Measures how efficiently engagement translates into revenue.
+**Feature Engineering & Explanations:**
+*   **`TotalPreviousSpending` (Historical Value):** Calculated as `PreviousOrders * AverageOrderValue`. 
+    *   *Utility:* Measures total historical volume, identifying long-term loyalists.
+*   **`TotalVisits` (Visit Frequency):** Sum of `WebsiteVisits` and `AppSessions`. 
+    *   *Utility:* Captures the total digital footprint across all platforms.
+*   **`EngagementScore` (Loyalty Intensity):** `(TotalVisits * 10) / (DaysSinceLastPurchase + 1)`. 
+    *   *Utility:* A powerful predictor that weights how often a customer visits against how recently they purchased.
+*   **`AvgSpendingPerVisit` (Conversion Efficiency):** `Year1Spending / (TotalVisits + 1)`. 
+    *   *Utility:* Identifies high-efficiency spenders versus "window shoppers."
+*   **`Recency`:** Derived from `DaysSinceLastPurchase`.
+    *   *Utility:* Tracks the time elapsed since the last transaction, a key indicator of churn risk.
 
 ---
 
