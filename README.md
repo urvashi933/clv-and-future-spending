@@ -104,12 +104,19 @@ Here are the key insights and visualizations from the data:
 
 ## 5. Customer Segmentation
 
-Customers were segmented into three tiers based on their `Year1Spending` quantiles:
-1.  **High-Value Customers:** Top 25% of spenders. These are the most lucrative users.
-2.  **Medium-Value Customers:** Middle 50% of spenders. The core customer base with potential to grow.
-3.  **Low-Value Customers:** Bottom 25% of spenders. These customers spend the least and may require cost-effective retention strategies.
+Instead of simple spending tiers, we implemented a multi-dimensional segmentation strategy using **Business Rules** that combine historical spending, engagement levels, and recency:
 
-**Interpretation:** Customers are segmented to easily identify the top 25% 'High-Value' targets for premium offers. The X-axis represents the `Customer Segment` and the Y-axis represents the `Number of Customers`.
+1.  **High-Value Customers:** Customers in the top 25% of spending who are actively engaged.
+2.  **Medium-Value Customers:** Customers in the middle 50% of spending with steady activity.
+3.  **Low-Value Customers:** Customers in the bottom 25% of spending.
+4.  **High-Potential Customers:** Medium spenders with **high income** and **high engagement scores**. These are targets for upselling into the High-Value tier.
+5.  **Low-Engagement Customers:** Customers with extremely low visit frequency and low interaction scores, representing a primary churn risk.
+6.  **At-risk Valuable Customers:** High-spending "whales" who have not made a purchase in over 30 days.
+
+**Segmentation Logic:**
+The logic utilizes quantile-based thresholds for spending and engagement. For example, **At-risk Valuable** status is triggered if a customer is in the top spending quartile but has a `DaysSinceLastPurchase` greater than 30. **High-Potential** status is identified by cross-referencing medium spenders against higher-than-median income and top-quartile engagement.
+
+**Interpretation:** This segmentation allows for highly targeted marketing—preventing churn for whales while aggressively upselling to high-potential engaged users.
 ![Customer Segments](images/customer_segments.png)
 
 ---

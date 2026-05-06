@@ -144,25 +144,49 @@ plt.close()
 
 # 4. Customer Segmentation
 print("\n--- Customer Segmentation ---")
-# Segmenting based on Year1Spending using Quantiles
-def get_value_segment(spending):
-    if spending > df['Year1Spending'].quantile(0.75):
+
+# Defining advanced segments using business rules
+def segment_customers(row):
+    # Quantile thresholds
+    high_spending_threshold = df['Year1Spending'].quantile(0.75)
+    low_spending_threshold = df['Year1Spending'].quantile(0.25)
+    high_engagement_threshold = df['EngagementScore'].quantile(0.75)
+    low_engagement_threshold = df['EngagementScore'].quantile(0.25)
+    
+    # 1. At-risk Valuable: High spenders who haven't purchased recently
+    if row['Year1Spending'] >= high_spending_threshold and row['DaysSinceLastPurchase'] > 30:
+        return 'At-risk Valuable'
+    
+    # 2. High-potential: Medium spenders with high income and high engagement
+    if (low_spending_threshold < row['Year1Spending'] < high_spending_threshold) and \
+       row['AnnualIncome'] > df['AnnualIncome'].median() and \
+       row['EngagementScore'] > high_engagement_threshold:
+        return 'High-Potential'
+    
+    # 3. Low-Engagement: Low visits and low engagement score
+    if row['EngagementScore'] <= low_engagement_threshold:
+        return 'Low-Engagement'
+    
+    # Standard Value-based segments for the rest
+    if row['Year1Spending'] >= high_spending_threshold:
         return 'High-Value'
-    elif spending > df['Year1Spending'].quantile(0.25):
+    elif row['Year1Spending'] >= low_spending_threshold:
         return 'Medium-Value'
     else:
         return 'Low-Value'
 
-df['CustomerSegment'] = df['Year1Spending'].apply(get_value_segment)
+df['CustomerSegment'] = df.apply(segment_customers, axis=1)
 
 # Save segmented distribution
-plt.figure(figsize=(8, 6))
-sns.countplot(x='CustomerSegment', data=df, order=['High-Value', 'Medium-Value', 'Low-Value'], palette='Set2')
-plt.title('Customer Segments by Year 1 Spending')
+plt.figure(figsize=(10, 6))
+segment_order = ['High-Value', 'Medium-Value', 'Low-Value', 'High-Potential', 'Low-Engagement', 'At-risk Valuable']
+sns.countplot(x='CustomerSegment', data=df, order=segment_order, palette='viridis')
+plt.title('Advanced Customer Segments')
 plt.xlabel('Customer Segment')
 plt.ylabel('Number of Customers')
-plt.figtext(0.5, 0.01, "Interpretation: Customers are segmented to identify the top 25% 'High-Value' targets for premium offers.", ha="center", fontsize=10, bbox={"facecolor":"lightgrey", "alpha":0.5, "pad":5})
-plt.subplots_adjust(bottom=0.15)
+plt.figtext(0.5, 0.01, "Logic: Combined spending, engagement, and recency to identify specific growth and churn risks.", ha="center", fontsize=10, bbox={"facecolor":"lightgrey", "alpha":0.5, "pad":5})
+plt.subplots_adjust(bottom=0.2)
+plt.xticks(rotation=45)
 plt.savefig('images/customer_segments.png')
 plt.close()
 
