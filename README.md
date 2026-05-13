@@ -1,6 +1,41 @@
-# Customer Lifetime Value Analysis and Future Spending Prediction
+# 📊 Part 5: Customer Lifetime Value Analysis and Future Spending Prediction
 
-## 1. Business Problem Understanding
+<p align="center">
+  <a href="#project-title"><b>Project Title</b></a> •
+  <a href="#business-problem-understanding"><b>Business Problem</b></a> •
+  <a href="#dataset-sources"><b>Sources</b></a> •
+  <a href="#dataset-understanding--description"><b>Dataset</b></a> •
+  <a href="#tools-and-libraries"><b>Tools</b></a> •
+  <a href="#steps-performed"><b>Pipeline</b></a> •
+  <a href="#data-cleaning-and-feature-engineering"><b>Data Pipeline</b></a> •
+  <a href="#exploratory-data-analysis-eda"><b>EDA Insights</b></a> •
+  <a href="#customer-segmentation"><b>Segmentation</b></a> •
+  <a href="#regression-model-summary"><b>Model Evaluation</b></a> •
+  <a href="#business-recommendations--final-ltv-growth-strategy"><b>LTV Strategy</b></a> •
+  <a href="#how-to-run-the-project"><b>Run Project</b></a>
+</p>
+
+---
+
+## 📌 Navigation
+- [Project Title](#project-title)
+- [Business Problem Understanding](#business-problem-understanding)
+- [Dataset Sources](#dataset-sources)
+- [Dataset Understanding / Description](#dataset-understanding--description)
+- [Tools & Libraries](#tools-and-libraries)
+- [Steps Performed](#steps-performed)
+- [Data Cleaning & Feature Engineering](#data-cleaning-and-feature-engineering)
+- [Exploratory Data Analysis](#exploratory-data-analysis-eda)
+- [Customer Segmentation](#customer-segmentation)
+- [Regression Model Summary](#regression-model-summary)
+- [Business Recommendations](#business-recommendations--final-ltv-growth-strategy)
+- [Execution Guide](#how-to-run-the-project)
+
+## Project Title
+Part 5: Customer Lifetime Value Analysis and Future Spending Prediction
+
+
+## Business Problem Understanding
 
 **What is Customer Lifetime Value (CLV)?**
 Customer Lifetime Value (CLV) is a metric that represents the total net profit a company can expect to generate from a customer throughout their entire relationship. It takes into account customer revenue and the projected lifespan of the relationship.
@@ -19,7 +54,16 @@ Predicting future spending allows the business to proactively allocate marketing
 
 ---
 
-## 2. Data Understanding
+## Dataset Sources
+The primary dataset used for this analysis is sourced from the following repository:
+- **Direct Link:** [Google Drive Folder](https://drive.google.com/drive/folders/1XC-00liRViTlyeFaig3mYTkQcBrheph6?usp=sharing)
+- **Primary File:** `part_5_customer_ltv_prediction.csv`
+
+*(See `dataset_source.md` for full details.)*
+
+---
+
+## Dataset Understanding / Description
 
 The dataset consists of **1,400 rows and 14 columns** detailing customer demographics, historical behavior, and expected future spending.
 
@@ -46,7 +90,31 @@ The target variable, `FutureSpending`, is a continuous numerical value (represen
 
 ---
 
-## 3. Data Cleaning and Feature Engineering
+## Tools and Libraries
+The following technological stack was utilized to build this CLV prediction and segmentation system:
+- **Python (v3.8+):** The primary programming language for data analysis and modeling.
+- **Pandas:** Used for data manipulation, imputation of missing values, and feature engineering.
+- **NumPy:** Facilitated high-performance numerical computations and handling of null values.
+- **Scikit-learn:** The core library used for data scaling, encoding categorical variables, and building **Regression** models.
+- **Matplotlib & Seaborn:** Used for generating high-quality statistical visualizations and correlation heatmaps.
+- **Gdown:** Utilized for programmatically downloading the dataset from Google Drive.
+
+---
+
+## Steps Performed
+The project was executed through a structured data science pipeline:
+1. **Data Understanding & Loading:** Imported the raw customer dataset and assessed variable distributions.
+2. **Data Cleaning:** Processed the dataset to handle missing values (median imputation) and validated data integrity by removing duplicates.
+3. **Feature Engineering:** Developed custom metrics like `EngagementScore` and `TotalVisits` to capture customer behavior more effectively.
+4. **Exploratory Data Analysis (EDA):** Conducted visual analysis to uncover trends between customer income, engagement, and future spending.
+5. **Customer Segmentation:** Applied business logic to segment customers into distinct tiers (VIP, At-Risk, High-Potential) for targeted marketing.
+6. **Model Building & Training:** Built and trained multiple regression models (Linear, Decision Tree, Random Forest) using a 80/20 train-test split.
+7. **Model Evaluation:** Analyzed predictive accuracy using MAE, RMSE, and R² scores.
+8. **Business Strategy Formulation:** Converted analytical insights into a comprehensive LTV growth and churn prevention strategy.
+
+---
+
+## Data Cleaning and Feature Engineering
 
 **Data Cleaning:**
 *   **Missing Values:** Missing values in `AnnualIncome` and `AverageOrderValue` were imputed using the median, which is robust against skewed distributions.
@@ -68,7 +136,7 @@ The target variable, `FutureSpending`, is a continuous numerical value (represen
 
 ---
 
-## 4. Exploratory Data Analysis (EDA)
+## Exploratory Data Analysis (EDA)
 
 Here are the key insights and visualizations from the data:
 
@@ -102,7 +170,7 @@ Here are the key insights and visualizations from the data:
 
 ---
 
-## 5. Customer Segmentation
+## Customer Segmentation
 
 Instead of simple spending tiers, we implemented a multi-dimensional segmentation strategy using **Business Rules** that combine historical spending, engagement levels, and recency:
 
@@ -121,7 +189,7 @@ The logic utilizes quantile-based thresholds for spending and engagement. For ex
 
 ---
 
-## 6. Regression Model Summary
+## Regression Model Summary
 
 We trained three different regression models to predict `FutureSpending`:
 
@@ -146,7 +214,7 @@ We trained three different regression models to predict `FutureSpending`:
 
 ---
 
-## 7. Business Recommendations & Final LTV Growth Strategy
+## Business Recommendations & Final LTV Growth Strategy
 
 Based on the data-driven modeling and EDA, here is the strategic plan to increase overall Customer Lifetime Value (LTV):
 
